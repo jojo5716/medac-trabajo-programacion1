@@ -4,6 +4,26 @@ public class main {
 
 	public static void main(String[] args) {
 		System.out.println("Iniciando juego...");
+		String[][] initialState = initializeGame();
+		
+		JuegoColores game = new JuegoColores(initialState);
+		game.mostrarEstado();
+		
+		System.out.println("Haciendo movimiento 1...");
+		game.mover(0, 2);
+		game.mostrarEstado();
+		
+		System.out.println("Haciendo movimiento 2...");
+		game.mover(0, 2);
+		game.mostrarEstado();
+		
+		
+		System.out.println("Haciendo movimiento 3...");
+		game.mover(0, 2);
+		game.mostrarEstado();
+	}
+	
+	private static String[][] initializeGame() {
 		String[][] initialState = new String[3][4];
 		
 		initialState[0][0] = "R";
@@ -14,8 +34,7 @@ public class main {
 		initialState[1][0] = "A";
 		initialState[2][0] = "A";
 		
-		JuegoColores game = new JuegoColores(initialState);
-		game.mostrarEstado();
+		return initialState;
 	}
 
 }
