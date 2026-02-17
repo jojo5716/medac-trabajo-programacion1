@@ -43,5 +43,31 @@ public class main {
 		System.out.println("Haciendo movimiento 3...");
 		game.mover(0, 2);
 		game.mostrarEstado();
+		
+		System.out.println("Haciendo movimiento 4...");
+		game.mover(2, 0);
+		game.mostrarEstado();
+		
+		System.out.println("Haciendo movimiento 5...");
+		game.mover(2, 1);
+		game.mostrarEstado();
+		
+		System.out.println("Haciendo movimiento 6...");
+		game.mover(1, 0);
+		game.mostrarEstado();
+		
+		System.out.println("Haciendo movimiento 7...");
+		game.mover(1, 2);
+		game.mostrarEstado();
+		
+		System.out.println("Haciendo movimiento 8...");
+		game.mover(0, 1);
+		game.mostrarEstado();
+		
+		if (game.isGameFinished()) {
+			System.out.println("Juego terminado.");
+		} else {
+			System.out.println("Juego no terminado.");
+		}
 	}
 }

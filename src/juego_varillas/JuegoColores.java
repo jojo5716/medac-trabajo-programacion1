@@ -32,6 +32,22 @@ public class JuegoColores {
 		}
 	}
 	
+	private boolean allValuesAreEquals(int rodId) {
+		int size = this.rodSizes[rodId];
+		if (size <= 1) {
+			return true;
+		}
+		
+		String firstColor = this.rods[rodId][0];
+		for (int i = 0; i < size; i++) {
+			if (!(this.rods[rodId][i].equals(firstColor))) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	private void saveHistoryState() {
 		if (this.historyCounter >= MAX_HISTORY) {
 			System.out.println("El historico se ha llenado.");
@@ -156,5 +172,15 @@ public class JuegoColores {
 		System.out.println("\t Movidos " + blocksToMove + " bloques " + color + 
 				" de varilla " + (rod_from + 1) + " a varilla " + (rod_to + 1));
 				
+	}
+	
+	public boolean isGameFinished() {
+		for (int i = 0; i< this.NUM_RODS; i++) {
+			if (!(this.allValuesAreEquals(i))) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 }
