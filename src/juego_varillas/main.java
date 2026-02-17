@@ -43,7 +43,7 @@ public class main {
 		
 		System.out.println("Iniciando juego...");
 		
-		JuegoColores game = new JuegoColores(initialState);
+		JuegoColores game = new JuegoColores(initialState, fileManagement);
 		
 		GameManager manager = new GameManager(game, fileManagement);
 		

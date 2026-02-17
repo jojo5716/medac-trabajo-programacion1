@@ -52,7 +52,7 @@ public class GameManager {
 				continue;
 			}
 			
-			this.fileManagement.logMessage("Selecciona la varilla destino (1-3):");
+			this.fileManagement.logMessageInLine("Selecciona la varilla destino (1-3):");
 			String inputTo = sc.nextLine().trim();
 			
 			int rodTo;

@@ -5,6 +5,7 @@ public class JuegoColores {
 	private static final int MAX_BLOCKS_BY_ROD= 4;
 	private static final int MAX_HISTORY= 100;
 	
+	private final FileManagement fileManagement;
 	private final String[][] rods;
 	private final int[] rodSizes;
 	private final String[][][] rodHistory;
@@ -12,12 +13,13 @@ public class JuegoColores {
 	private int historyCounter;
 
 
-	public JuegoColores(String[][] initialState) {
+	public JuegoColores(String[][] initialState, FileManagement fileManagement) {
 		this.rods = new String[NUM_RODS][MAX_BLOCKS_BY_ROD];
 		this.rodSizes = new int[NUM_RODS];
 		this.rodHistory = new String[MAX_HISTORY][NUM_RODS][MAX_BLOCKS_BY_ROD];
 		this.sizeHistory = new int[MAX_HISTORY][NUM_RODS];
 		this.historyCounter = 0;
+		this.fileManagement = fileManagement;
 		
 		for (int i = 0; i < NUM_RODS; i++) {
 			int size = 0;
@@ -50,7 +52,7 @@ public class JuegoColores {
 	
 	private void saveHistoryState() {
 		if (this.historyCounter >= MAX_HISTORY) {
-			System.out.println("El historico se ha llenado.");
+			this.fileManagement.logMessage("El historico se ha llenado.");
 			return;
 		}
 		
@@ -70,7 +72,7 @@ public class JuegoColores {
 	
 	public void undoMovement() {
 		if (this.historyCounter <= 0) {
-			System.out.println("No hay ningun movimiento para deshacer");
+			this.fileManagement.logMessage("No hay ningun movimiento para deshacer");
 			return;
 		}
 		
@@ -86,7 +88,7 @@ public class JuegoColores {
 			this.rodSizes[i] = this.sizeHistory[this.historyCounter][i];
 		}
 
-		System.out.println("Se ha deshecho el último movimiento.");		
+		this.fileManagement.logMessage("Se ha deshecho el último movimiento.");		
 	}
 	
 	public void mostrarEstado() {
@@ -110,22 +112,22 @@ public class JuegoColores {
 	private boolean validateMovement(int rod_from, int rod_to) { 
 		var success = false; 
 		if (rod_from < 0 || rod_from >= this.NUM_RODS || rod_to < 0 || rod_to >= this.NUM_RODS) { 
-			System.out.println("Movimiento inválido: La varilla no existe."); 
+			this.fileManagement.logMessage("Movimiento inválido: La varilla no existe."); 
 			return success; 
 		}
 		
 		if (rod_from == rod_to) { 
-			System.out.println("Movimiento inválido: El destino no puede ser el mismo origen."); 
+			this.fileManagement.logMessage("Movimiento inválido: El destino no puede ser el mismo origen."); 
 			return success; 
 		}
 		
 		if (this.rodSizes[rod_from] == 0) { 
-			System.out.println("No hay bloques por mover."); 
+			this.fileManagement.logMessage("No hay bloques por mover."); 
 			return success; 
 		}
 
 		if (this.getFreeSpace(rod_to) == 0) {
-			System.out.println("\t Varilla destino llena.");
+			this.fileManagement.logMessage("\t Varilla destino llena.");
 			return success; 
 		}
 		
@@ -153,7 +155,7 @@ public class JuegoColores {
 		
 		int blocksToMove = Math.min(this.getFreeSpace(rod_to), consecutiveBlocks);
 		if (blocksToMove == 0) {
-			System.out.println("\t No se puede mover. Varilla destino llena");
+			this.fileManagement.logMessage("\t No se puede mover. Varilla destino llena");
 			return;
 		}
 		
@@ -169,7 +171,7 @@ public class JuegoColores {
 			this.rodSizes[rod_to] += 1;
 		}
 		
-		System.out.println("\t Movidos " + blocksToMove + " bloques " + color + 
+		this.fileManagement.logMessage("\t Movidos " + blocksToMove + " bloques " + color + 
 				" de varilla " + (rod_from + 1) + " a varilla " + (rod_to + 1));
 				
 	}

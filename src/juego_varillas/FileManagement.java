@@ -30,6 +30,11 @@ public class FileManagement {
 		this.appendLine(message);
 	}
 	
+	public void logMessageInLine(String message) {
+		System.out.print(message);
+		this.appendLine(message);
+	}
+	
 	public void clearFile() {
 		PrintWriter out = null;
 		try {
