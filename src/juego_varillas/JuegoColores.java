@@ -25,12 +25,13 @@ public class JuegoColores {
 	}
 	
 	public void mostrarEstado() {
+		System.out.println("\t Estado actual:");
 		for (int i = 0; i < NUM_RODS; i++) {
-			System.out.print("Varilla " + ( i + 1) + ": [");
+			System.out.print("\t\t Varilla " + ( i + 1) + ": [");
 			for (int j = 0; j < rodSizes[i]; j++) {
 				System.out.print(rods[i][j]);
 				if (j < rodSizes[i] - 1) {
-					System.out.print(" ");
+					System.out.print("  ");
 				}
 			}
 			System.out.println("]");
@@ -59,7 +60,7 @@ public class JuegoColores {
 		}
 
 		if (this.getFreeSpace(rod_to) == 0) {
-			System.out.println("Varilla destino llena.");
+			System.out.println("\t Varilla destino llena.");
 			return success; 
 		}
 		
@@ -87,7 +88,7 @@ public class JuegoColores {
 		
 		int blocksToMove = Math.min(this.getFreeSpace(rod_to), consecutiveBlocks);
 		if (blocksToMove == 0) {
-			System.out.println("No se puede mover. Varilla destino llena");
+			System.out.println("\t No se puede mover. Varilla destino llena");
 			return;
 		}
 		
@@ -102,7 +103,7 @@ public class JuegoColores {
 			this.rodSizes[rod_to] += 1;
 		}
 		
-		System.out.println("Movidos " + blocksToMove + " bloques " + color + 
+		System.out.println("\t Movidos " + blocksToMove + " bloques " + color + 
 				" de varilla " + (rod_from + 1) + " a varilla " + (rod_to + 1));
 				
 	}
