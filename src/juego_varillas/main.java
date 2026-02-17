@@ -22,9 +22,18 @@ public class main {
 		JuegoColores game = new JuegoColores(initialState);
 		game.mostrarEstado();
 		
+		System.out.println("Deshaciendo ultimo movimiento...");
+		game.undoMovement();
+		game.mostrarEstado();
+		
 		System.out.println("Haciendo movimiento 1...");
 		game.mover(0, 2);
 		game.mostrarEstado();
+		
+		System.out.println("Deshaciendo ultimo movimiento...");
+		game.undoMovement();
+		game.mostrarEstado();
+
 		
 		System.out.println("Haciendo movimiento 2...");
 		game.mover(0, 2);

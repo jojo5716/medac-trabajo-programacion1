@@ -3,13 +3,21 @@ package juego_varillas;
 public class JuegoColores {
 	private static final int NUM_RODS = 3;
 	private static final int MAX_BLOCKS_BY_ROD= 4;
+	private static final int MAX_HISTORY= 100;
 	
 	private final String[][] rods;
 	private final int[] rodSizes;
-	
+	private final String[][][] rodHistory;
+	private final int[][] sizeHistory;
+	private int historyCounter;
+
+
 	public JuegoColores(String[][] initialState) {
 		this.rods = new String[NUM_RODS][MAX_BLOCKS_BY_ROD];
 		this.rodSizes = new int[NUM_RODS];
+		this.rodHistory = new String[MAX_HISTORY][NUM_RODS][MAX_BLOCKS_BY_ROD];
+		this.sizeHistory = new int[MAX_HISTORY][NUM_RODS];
+		this.historyCounter = 0;
 		
 		for (int i = 0; i < NUM_RODS; i++) {
 			int size = 0;
@@ -22,6 +30,47 @@ public class JuegoColores {
 
 			this.rodSizes[i] = size;
 		}
+	}
+	
+	private void saveHistoryState() {
+		if (this.historyCounter >= MAX_HISTORY) {
+			System.out.println("El historico se ha llenado.");
+			return;
+		}
+		
+		for (int i=0; i < NUM_RODS; i++ ) {
+			for (int j=0; j < MAX_BLOCKS_BY_ROD; j++ ) {
+				this.rodHistory[historyCounter][i][j] = this.rods[i][j];
+			}
+		}
+		
+		for (int i=0; i< NUM_RODS; i++) {
+			this.sizeHistory[this.historyCounter][i] = this.rodSizes[i];
+		}
+		
+		this.historyCounter += 1;
+	}
+	
+	
+	public void undoMovement() {
+		if (this.historyCounter <= 0) {
+			System.out.println("No hay ningun movimiento para deshacer");
+			return;
+		}
+		
+		this.historyCounter -= 1;
+		
+		for (int i=0; i < NUM_RODS; i++ ) {
+			for (int j=0; j < MAX_BLOCKS_BY_ROD; j++ ) {
+				this.rods[i][j] = this.rodHistory[this.historyCounter][i][j];
+			}
+		}
+		
+		for (int i=0; i< NUM_RODS; i++) {
+			this.rodSizes[i] = this.sizeHistory[this.historyCounter][i];
+		}
+
+		System.out.println("Se ha deshecho el último movimiento.");		
 	}
 	
 	public void mostrarEstado() {
@@ -76,7 +125,7 @@ public class JuegoColores {
 		
 		int topFrom = this.rodSizes[rod_from] - 1;
 		String color = this.rods[rod_from][topFrom];
-		
+
 		int consecutiveBlocks = 0;
 		for (int i = topFrom; i >= 0; i--) {
 			if (this.rods[rod_from][i] != null && this.rods[rod_from][i].equals(color)) {
@@ -92,10 +141,11 @@ public class JuegoColores {
 			return;
 		}
 		
+		this.saveHistoryState();
 		for (int i = 0; i < blocksToMove; i++) {
 			int idFrom = this.rodSizes[rod_from] - 1;
 			int idTo = this.rodSizes[rod_to];
-			
+
 			this.rods[rod_to][idTo] = this.rods[rod_from][idFrom];
 			this.rods[rod_from][idFrom] = null;
 			
