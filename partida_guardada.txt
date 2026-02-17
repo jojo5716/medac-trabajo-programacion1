@@ -1,0 +1,20 @@
+Bienvenido al juego de colores
+Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
+Selecciona la varilla destino (1-3):
+Saliendo del juego...
+Bienvenido al juego de colores
+Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
+Bienvenido al juego de colores
+Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
+Bienvenido al juego de colores
+Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
+Bienvenido al juego de colores
+Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
+Bienvenido al juego de colores
+Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
+Bienvenido al juego de colores
+Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
+Bienvenido al juego de colores
+Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
+Selecciona la varilla destino (1-3):
+Selecciona la varilla destino (1-3):

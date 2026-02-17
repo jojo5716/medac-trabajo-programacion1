@@ -1,7 +1,9 @@
 package juego_varillas;
 
+import java.util.Scanner;
+
 public class main {
-	private static String[][] initializeGame() {
+	private static String[][] initializeDefaultGame() {
 		String[][] initialState = new String[3][4];
 		
 		initialState[0][0] = "R";
@@ -10,64 +12,41 @@ public class main {
 		initialState[0][3] = "V";
 
 		initialState[1][0] = "A";
+
 		initialState[2][0] = "A";
 		
 		return initialState;
 	}
 
 	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		FileManagement fileManagement = new FileManagement();
+		String[][] initialState = null;
+		
+		System.out.print("¿Deseas cargar una partida desde un fichero? (S/N): ");
+		boolean shouldLoadFromFile = sc.nextLine().trim().toUpperCase().equals("S");
+		
+		if (shouldLoadFromFile) {
+			System.out.print("Introduce el nombre del fichero (ejemplo: partida1.txt): ");
+			String fileName = sc.nextLine().trim();
+			initialState = fileManagement.loadInitialState(fileName);
+			
+			if (initialState == null) {
+				System.out.println("Hubo un error al cargar la partida desde el fichero.");
+				System.out.println("Cargando partida por defecto...");
+				initialState = initializeDefaultGame();
+			}
+			
+		} else {
+			initialState = initializeDefaultGame();
+		}
+		
 		System.out.println("Iniciando juego...");
-		String[][] initialState = initializeGame();
 		
 		JuegoColores game = new JuegoColores(initialState);
-		game.mostrarEstado();
 		
-		System.out.println("Deshaciendo ultimo movimiento...");
-		game.undoMovement();
-		game.mostrarEstado();
+		GameManager manager = new GameManager(game, fileManagement);
 		
-		System.out.println("Haciendo movimiento 1...");
-		game.mover(0, 2);
-		game.mostrarEstado();
-		
-		System.out.println("Deshaciendo ultimo movimiento...");
-		game.undoMovement();
-		game.mostrarEstado();
-
-		
-		System.out.println("Haciendo movimiento 2...");
-		game.mover(0, 2);
-		game.mostrarEstado();
-		
-		
-		System.out.println("Haciendo movimiento 3...");
-		game.mover(0, 2);
-		game.mostrarEstado();
-		
-		System.out.println("Haciendo movimiento 4...");
-		game.mover(2, 0);
-		game.mostrarEstado();
-		
-		System.out.println("Haciendo movimiento 5...");
-		game.mover(2, 1);
-		game.mostrarEstado();
-		
-		System.out.println("Haciendo movimiento 6...");
-		game.mover(1, 0);
-		game.mostrarEstado();
-		
-		System.out.println("Haciendo movimiento 7...");
-		game.mover(1, 2);
-		game.mostrarEstado();
-		
-		System.out.println("Haciendo movimiento 8...");
-		game.mover(0, 1);
-		game.mostrarEstado();
-		
-		if (game.isGameFinished()) {
-			System.out.println("Juego terminado.");
-		} else {
-			System.out.println("Juego no terminado.");
-		}
+		manager.initialiceGame();
 	}
 }
