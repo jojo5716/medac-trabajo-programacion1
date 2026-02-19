@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.util.Arrays;
 
 
-public class FileManagement {
+public class GestorArchivos {
 	private static final String OUTPUT_FILE = "partida_guardada.txt";
 		
 	private void appendLine(String message) {
@@ -25,16 +25,12 @@ public class FileManagement {
 		}
 	}
 	
-	public void logMessage(String message) {
-		System.out.println(message);
-		this.appendLine(message);
+	public void escribir(String mensaje) {
+		System.out.print(mensaje);
+
+		this.appendLine(mensaje);
 	}
-	
-	public void logMessageInLine(String message) {
-		System.out.print(message);
-		this.appendLine(message);
-	}
-	
+
 	public void clearFile() {
 		PrintWriter out = null;
 		try {
@@ -49,7 +45,7 @@ public class FileManagement {
 		}
 	}
 	
-	public String[][] loadInitialState(String inputFile) {
+	public String[][] iniciarGrabacion(String inputFile) {
 		String[][] state = new String[3][4];
 		BufferedReader br = null;
 		try {

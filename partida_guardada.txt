@@ -1,19 +1,15 @@
+¿Deseas cargar una partida desde un fichero? (S/N): 
+Iniciando juego...
 Bienvenido al juego de colores
 Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
-Bienvenido al juego de colores
-Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
-Bienvenido al juego de colores
-Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
-Bienvenido al juego de colores
-Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
-Bienvenido al juego de colores
-Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
-Selecciona la varilla destino (1-3):
-Bienvenido al juego de colores
-Comandos: 1-3 para mover varillas, D=Deshacer, S=Salir
-Selecciona la varilla destino (1-3):
-	 Movidos 2 bloques V de varilla 1 a varilla 2
+Selecciona varilla origen (1-3, D=Deshacer, S=Salir): 
+Selecciona la varilla destino (1-3): 
+	 Movidos 2 bloques V de varilla 1 a varilla 3
+Selecciona varilla origen (1-3, D=Deshacer, S=Salir): 
 Se ha deshecho el último movimiento.
-No hay ningun movimiento para deshacer
-No hay ningun movimiento para deshacer
-Saliendo del juego...
+Selecciona varilla origen (1-3, D=Deshacer, S=Salir): 
+Selecciona la varilla destino (1-3): 
+	 Movidos 1 bloques A de varilla 3 a varilla 2
+Selecciona varilla origen (1-3, D=Deshacer, S=Salir): 
+Selecciona la varilla destino (1-3): 
+	 Movidos 2 bloques V de varilla 1 a varilla 3
